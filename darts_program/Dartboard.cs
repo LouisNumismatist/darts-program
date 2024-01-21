@@ -30,13 +30,16 @@ internal class Dartboard
 
   private static readonly Random random = new();
 
-  public static Score GetScore(double x, double y)
+  public static Score GetScore(CartesianCoord coord)
   {
-    PolarCoord polar = new(x, y);
+    return GetScore(coord.ToPolar());
+  }
 
-    int number = Scores[(int)((polar.Angle + SEGMENT_ANGLE / 2) / SEGMENT_ANGLE)];
+  public static Score GetScore(PolarCoord coord)
+  {
+    int number = Scores[(int)((coord.Angle + SEGMENT_ANGLE / 2) % SEGMENT_ANGLE)];
 
-    switch (GetSegment(polar.Distance))
+    switch (GetSegment(coord.Distance))
     {
       case Segment.BULL_OUTER:
       case Segment.SINGLE_INNER:
