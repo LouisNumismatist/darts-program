@@ -2,7 +2,7 @@
 
 internal class Score(Score.Multiplier mult, int value)
 {
-  public enum Multiplier { NONE, S, D, T };
+  public enum Multiplier { NONE, SINGLE, DOUBLE, TRIPLE };
 
   public readonly Multiplier Mult = mult;
   public readonly int Value = value;
@@ -15,13 +15,13 @@ internal class Score(Score.Multiplier mult, int value)
 
     switch(Mult)
     {
-      case Multiplier.S:
+      case Multiplier.SINGLE:
         str = "S";
         break;
-      case Multiplier.T:
+      case Multiplier.TRIPLE:
         str = "T";
         break;
-      case Multiplier.D:
+      case Multiplier.DOUBLE:
         str = "D";
         break;
       case Multiplier.NONE:

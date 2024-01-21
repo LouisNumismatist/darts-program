@@ -48,12 +48,12 @@ internal class Dartboard
       case Segment.BULL_OUTER:
       case Segment.SINGLE_INNER:
       case Segment.SINGLE_OUTER:
-        return new Score(Score.Multiplier.S, number);
+        return new Score(Score.Multiplier.SINGLE, number);
       case Segment.BULL_INNER:
       case Segment.DOUBLE:
-        return new Score(Score.Multiplier.D, number);
+        return new Score(Score.Multiplier.DOUBLE, number);
       case Segment.TRIPLE:
-        return new Score(Score.Multiplier.T, number);
+        return new Score(Score.Multiplier.TRIPLE, number);
       case Segment.NO_SCORE:
         return new Score(Score.Multiplier.NONE, number);
       default:
@@ -68,7 +68,7 @@ internal class Dartboard
 
     if (score.Value == 25)
     {
-      if (score.Mult == Score.Multiplier.D) return (PolarCoord)new CartesianCoord(0, 0);
+      if (score.Mult == Score.Multiplier.DOUBLE) return (PolarCoord)new CartesianCoord(0, 0);
 
       distance = (OUTER_BULL - INNER_BULL) / 2 + INNER_BULL;
 
@@ -78,13 +78,13 @@ internal class Dartboard
     {
       switch (score.Mult)
       {
-        case Score.Multiplier.S:
+        case Score.Multiplier.SINGLE:
           distance = DOUBLE_RING / 2 + TRIPLE_RING / 2 + DOUBLE_TRIPLE_SIZE;
           break;
-        case Score.Multiplier.T:
+        case Score.Multiplier.TRIPLE:
           distance = TRIPLE_RING;
           break;
-        case Score.Multiplier.D:
+        case Score.Multiplier.DOUBLE:
           distance = DOUBLE_RING;
           break;
         default:

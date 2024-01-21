@@ -45,27 +45,27 @@ internal class Dartbot(double accuracy) : Player
 
         if (tempScore >= 62)
         {
-          aimedScore = new Score(Score.Multiplier.T, 20);
+          aimedScore = new Score(Score.Multiplier.TRIPLE, 20);
         }
         else if (tempScore == 61)
         {
-          aimedScore = new Score(Score.Multiplier.S, 1);
+          aimedScore = new Score(Score.Multiplier.SINGLE, 1);
         }
         else if (tempScore >= 42)
         {
-          aimedScore = new Score(Score.Multiplier.S, tempScore - 40);
+          aimedScore = new Score(Score.Multiplier.SINGLE, tempScore - 40);
         }
         else if (tempScore == 41)
         {
-          aimedScore = new Score(Score.Multiplier.S, 1);
+          aimedScore = new Score(Score.Multiplier.SINGLE, 1);
         }
         else if (tempScore % 2 == 0)
         {
-          aimedScore = new Score(Score.Multiplier.D, tempScore / 2);
+          aimedScore = new Score(Score.Multiplier.DOUBLE, tempScore / 2);
         }
         else
         {
-          aimedScore = new Score(Score.Multiplier.S, 1);
+          aimedScore = new Score(Score.Multiplier.SINGLE, 1);
         }
 
         singleThrow = Dartboard.GetCoordinate(aimedScore);
@@ -78,7 +78,7 @@ internal class Dartbot(double accuracy) : Player
 
         if (tempScore == 0)
         {
-          if (thrownScore.Mult == Score.Multiplier.D)
+          if (thrownScore.Mult == Score.Multiplier.DOUBLE)
           {
             break;
           }
