@@ -19,7 +19,7 @@ internal class Program
 
     CartesianCoord tripleTwenty = Dartboard.GetCoordinate(target);
 
-    for (int i = increments; i <= 500; i+=increments)
+    for (int i = increments; i <= 500; i += increments)
     {
       score = 0;
       dartbot = new Dartbot(i);
