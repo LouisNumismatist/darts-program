@@ -37,7 +37,11 @@ internal class Dartboard
 
   public static Score GetScore(PolarCoord coord)
   {
-    int number = Scores[(int)((coord.Angle + SEGMENT_ANGLE / 2) % SEGMENT_ANGLE)];
+    double calc = (coord.Angle + SEGMENT_ANGLE / 2) / SEGMENT_ANGLE;
+
+    if (calc < 0) calc += 2 * Math.PI;
+
+    int number = Scores[(int)calc % 20];
 
     switch (GetSegment(coord.Distance))
     {
@@ -89,7 +93,7 @@ internal class Dartboard
 
       distance += DOUBLE_TRIPLE_SIZE / 2;
 
-      angle = score.Value * SEGMENT_ANGLE;
+      angle = Array.IndexOf(Scores, score.Value) * SEGMENT_ANGLE;
     }
 
     return new PolarCoord(distance, angle).ToCartesian();

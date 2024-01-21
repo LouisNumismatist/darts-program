@@ -12,6 +12,11 @@ internal class CartesianCoord(double x, double y)
     double distance = Math.Sqrt(X * X + Y * Y);
     double angle = Math.Atan(Y / X);
 
+    if (X < 0 && Y > 0) angle += Math.PI;
+    if (X > 0 && Y < 0) angle += Math.PI;
+
+    if (Y < 0) angle += Math.PI;
+
     return new PolarCoord(distance, angle);
   }
 
