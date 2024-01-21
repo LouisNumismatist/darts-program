@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata;
 
 namespace darts_program.Coords;
 
@@ -7,22 +8,16 @@ internal class CartesianCoord(double x, double y)
   public double X { get; private set; } = x;
   public double Y { get; private set; } = y;
 
-  public PolarCoord ToPolar()
+  public static CartesianCoord operator +(CartesianCoord a, CartesianCoord b)
   {
-    double distance = Math.Sqrt(X * X + Y * Y);
-    double angle = Math.Atan(Y / X);
-
-    if (X < 0 && Y > 0) angle += Math.PI;
-    if (X > 0 && Y < 0) angle += Math.PI;
-
-    if (Y < 0) angle += Math.PI;
-
-    return new PolarCoord(distance, angle);
+    return new CartesianCoord(a.X + b.X, a.Y + b.Y);
   }
 
-  public void AddCoord(CartesianCoord coord)
+  public static explicit operator CartesianCoord(PolarCoord polar)
   {
-    X += coord.X;
-    Y += coord.Y;
+    double x = polar.Distance * Math.Cos(polar.Angle);
+    double y = polar.Distance * Math.Sin(polar.Angle);
+
+    return new CartesianCoord(x, y);
   }
 }

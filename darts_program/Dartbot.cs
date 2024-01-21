@@ -9,13 +9,13 @@ internal class Dartbot(double accuracy) : Player
 
   private readonly Random random = new();
 
-  public CartesianCoord GetOffset()
+  public PolarCoord GetOffset()
   {
     double angle = random.NextDouble() * 2 * Math.PI;
 
     double distance = Math.Acos(2 * random.NextDouble() - 1) * Accuracy / Math.PI;
 
-    return new PolarCoord(distance, angle).ToCartesian();
+    return new PolarCoord(distance, angle);
   }
 
   public int PlayLeg()
@@ -28,7 +28,7 @@ internal class Dartbot(double accuracy) : Player
 
     int totalDarts = 0;
 
-    CartesianCoord singleThrow;
+    PolarCoord singleThrow;
 
     Score thrownScore;
 
@@ -70,7 +70,7 @@ internal class Dartbot(double accuracy) : Player
 
         singleThrow = Dartboard.GetCoordinate(aimedScore);
 
-        singleThrow.AddCoord(GetOffset());
+        singleThrow += GetOffset();
 
         thrownScore = Dartboard.GetScore(singleThrow);
 

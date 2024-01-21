@@ -32,7 +32,7 @@ internal class Dartboard
 
   public static Score GetScore(CartesianCoord coord)
   {
-    return GetScore(coord.ToPolar());
+    return GetScore((PolarCoord)coord);
   }
 
   public static Score GetScore(PolarCoord coord)
@@ -61,14 +61,14 @@ internal class Dartboard
     }
   }
 
-  public static CartesianCoord GetCoordinate(Score score)
+  public static PolarCoord GetCoordinate(Score score)
   {
     double distance;
     double angle;
 
     if (score.Value == 25)
     {
-      if (score.Mult == Score.Multiplier.D) return new CartesianCoord(0, 0);
+      if (score.Mult == Score.Multiplier.D) return (PolarCoord)new CartesianCoord(0, 0);
 
       distance = (OUTER_BULL - INNER_BULL) / 2 + INNER_BULL;
 
@@ -96,7 +96,7 @@ internal class Dartboard
       angle = Array.IndexOf(Scores, score.Value) * SEGMENT_ANGLE;
     }
 
-    return new PolarCoord(distance, angle).ToCartesian();
+    return new PolarCoord(distance, angle);
   }
 
   private static Segment GetSegment(double distance)
