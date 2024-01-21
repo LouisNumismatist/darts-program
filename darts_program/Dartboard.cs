@@ -30,11 +30,6 @@ internal class Dartboard
 
   private static readonly Random random = new();
 
-  public static Score GetScore(CartesianCoord coord)
-  {
-    return GetScore((PolarCoord)coord);
-  }
-
   public static Score GetScore(PolarCoord coord)
   {
     double calc = (coord.Angle + SEGMENT_ANGLE / 2) / SEGMENT_ANGLE;
@@ -68,7 +63,7 @@ internal class Dartboard
 
     if (score.Value == 25)
     {
-      if (score.Mult == Score.Multiplier.DOUBLE) return (PolarCoord)new CartesianCoord(0, 0);
+      if (score.Mult == Score.Multiplier.DOUBLE) return new PolarCoord(0, 0);
 
       distance = (OUTER_BULL - INNER_BULL) / 2 + INNER_BULL;
 

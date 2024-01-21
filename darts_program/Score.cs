@@ -15,19 +15,12 @@ internal class Score(Score.Multiplier mult, int value)
 
     switch(Mult)
     {
-      case Multiplier.SINGLE:
-        str = "S";
-        break;
-      case Multiplier.TRIPLE:
-        str = "T";
-        break;
-      case Multiplier.DOUBLE:
-        str = "D";
-        break;
+      case Multiplier.SINGLE: str = "S"; break;
+      case Multiplier.TRIPLE: str = "T"; break;
+      case Multiplier.DOUBLE: str = "D"; break;
       case Multiplier.NONE:
       default:
-        str = "-";
-        break;
+        str = "-"; break;
     }
 
     if (Value < 10) str += "0";
