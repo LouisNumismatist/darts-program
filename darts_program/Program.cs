@@ -1,6 +1,4 @@
-﻿using darts_program.Coords;
-using System;
-using System.Runtime;
+﻿using System;
 
 namespace darts_program;
 
@@ -8,30 +6,25 @@ internal class Program
 {
   static Dartbot dartbot;
 
-  const int throws = 50;
-  const int increments = 5;
+  const int games = 10;
+  const int increments = 2;
 
-  static readonly Score target = new Score(Score.Multiplier.T, 20);
   static void Main(string[] args)
   {
-    double score;
-    CartesianCoord offset;
+    double totalDarts;
 
-    CartesianCoord tripleTwenty = Dartboard.GetCoordinate(target);
-
-    for (int i = increments; i <= 500; i += increments)
+    for (int i = increments; i <= 100; i += increments)
     {
-      score = 0;
+      totalDarts = 0;
+
       dartbot = new Dartbot(i);
 
-      for (int j = 0; j < throws * 3; j++)
+      for (int j = 0; j < games; j++)
       {
-        offset = dartbot.GetOffset();
-        offset.AddCoord(tripleTwenty);
-        score += Dartboard.GetScore(offset).GetScore();
+        totalDarts += dartbot.PlayLeg();
       }
 
-      Console.WriteLine($"Accuracy: {i}, Average: {score / throws}");
+      Console.WriteLine($"Accuracy: {i}, Average: {3 * 501 / (totalDarts / games):#.##}");
     }
   }
 }
