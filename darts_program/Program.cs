@@ -11,6 +11,13 @@ internal class Program
 
   static void Main(string[] args)
   {
+    foreach (Score score in Score.GetValidScores(60))
+    {
+      Console.Write($"{score}, ");
+    }
+
+    return;
+
     double totalDarts;
 
     for (int i = increments; i <= 100; i += increments)
@@ -21,7 +28,7 @@ internal class Program
 
       for (int j = 0; j < games; j++)
       {
-        totalDarts += dartbot.PlayLeg();
+        //totalDarts += dartbot.PlayLeg();
       }
 
       Console.WriteLine($"Accuracy: {i}, Average: {3 * 501 / (totalDarts / games):#.##}");
